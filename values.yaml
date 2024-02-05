@@ -19,7 +19,7 @@ argocd-apps:
 
   applications:
     - name: test-api
-      namespace: assignment
+      namespace: argocd
       finalizers:
         - resources-finalizer.argocd.argoproj.io
       project: assignment
@@ -38,7 +38,7 @@ argocd-apps:
           - CreateNamespace=true
 
     - name: test-api-server
-      namespace: assignment
+      namespace: argocd
       finalizers:
         - resources-finalizer.argocd.argoproj.io
       project: assignment
