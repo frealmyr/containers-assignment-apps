@@ -19,3 +19,8 @@ spec:
       containers:
       - image: tecdnbassignment.azurecr.io/testapi:latest
         name: testapi
+        requests:
+          cpu: 10m
+          memory: 25Mi
+        limits:
+          memory: 75Mi
