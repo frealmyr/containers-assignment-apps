@@ -25,11 +25,11 @@ argocd-apps:
       project: assignment
       destination:
         name: in-cluster
-        namespace: argocd
+        namespace: assignment
       source:
         repoURL: https://github.com/frealmyr/containers-assignment-apps
         targetRevision: main
-        path: test-api
+        path: applications/test-api
       syncPolicy:
         automated:
           prune: true
@@ -44,11 +44,11 @@ argocd-apps:
       project: assignment
       destination:
         name: in-cluster
-        namespace: argocd
+        namespace: assignment
       source:
         repoURL: https://github.com/frealmyr/containers-assignment-apps
         targetRevision: main
-        path: test-api-server
+        path: applications/test-api-server
       syncPolicy:
         automated:
           prune: true
