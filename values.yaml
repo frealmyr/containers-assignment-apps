@@ -1,0 +1,57 @@
+argocd-apps:
+
+  projects:
+    - name: assignment
+      namespace: argocd
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+      sourceRepos:
+      - '*'
+      destinations:
+      - namespace: '*'
+        server: '*'
+      clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+      namespaceResourceWhitelist:
+      - group: '*'
+        kind: '*'
+
+  applications:
+    - name: test-api
+      namespace: assignment
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+      project: assignment
+      destination:
+        name: in-cluster
+        namespace: argocd
+      source:
+        repoURL: https://github.com/frealmyr/containers-assignment-apps
+        targetRevision: main
+        path: test-api
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+        syncOptions:
+          - CreateNamespace=true
+
+    - name: test-api-server
+      namespace: assignment
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+      project: assignment
+      destination:
+        name: in-cluster
+        namespace: argocd
+      source:
+        repoURL: https://github.com/frealmyr/containers-assignment-apps
+        targetRevision: main
+        path: test-api-server
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+        syncOptions:
+          - CreateNamespace=true

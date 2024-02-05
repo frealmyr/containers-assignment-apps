@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: testapiserver
+  name: testapiserver
+spec:
+  selector:
+    matchLabels:
+      app: testapiserver
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: testapiserver
+    spec:
+      containers:
+      - image: tecdnbassignment.azurecr.io/testapiserver:latest
+        name: testapiserver
