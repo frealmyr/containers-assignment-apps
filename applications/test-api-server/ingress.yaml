@@ -5,6 +5,7 @@ metadata:
   name: testapiserver-ingress
 spec:
   ingressClassName: traefik
+  type: ClusterIP
   rules:
     - http:
         paths:
