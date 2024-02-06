@@ -9,10 +9,11 @@ spec:
   ingressClassName: traefik
   type: ClusterIP
   rules:
-    - http:
+    - host: "*"
+      http:
         paths:
           - path: /view/customer
-            pathType: Prefix
+            pathType: Exact
             backend:
               service:
                 name: testapiserversvc
