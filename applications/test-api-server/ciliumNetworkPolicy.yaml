@@ -9,9 +9,10 @@ specs:
       matchLabels:
         app: testapiserver
     egress:
-      - toEndpoints:
-          - matchLabels:
-              app: testapibackendsvc
+      - toServices:
+          - k8sService:
+              serviceName: testapibackendsvc
+              namespace: assignment
         toPorts:
           - ports:
               - port: "10000"
