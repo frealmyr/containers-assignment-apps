@@ -14,3 +14,8 @@ spec:
       services:
         - name: testapiserversvc
           port: 8080
+    - kind: Rule
+      match: PathPrefix(`/api/customer`)
+      services:
+        - name: testapiserversvc
+          port: 8080
