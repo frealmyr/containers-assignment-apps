@@ -22,9 +22,6 @@ specs:
           - ports:
               - port: "53"
                 protocol: UDP
-            rules:
-              dns:
-                - matchPattern: "*"
       - toServices:
           - k8sService:
               serviceName: testapibackendsvc

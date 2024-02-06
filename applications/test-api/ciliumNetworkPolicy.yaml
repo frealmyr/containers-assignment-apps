@@ -16,9 +16,6 @@ specs:
           - ports:
               - port: "53"
                 protocol: UDP
-            rules:
-              dns:
-                - matchPattern: "*"
     ingress:
       - fromEndpoints:
         - matchLabels:
