@@ -26,6 +26,8 @@ specs:
       matchLabels:
         app: testapiserver
     ingress:
-      - fromEndpoints:
-        - matchLabels:
-            role: frontend
+      - fromEntities:
+        - world
+        toPorts:
+          - ports:
+              - port: "8080"

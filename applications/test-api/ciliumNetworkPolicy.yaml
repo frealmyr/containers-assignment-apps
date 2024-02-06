@@ -21,6 +21,6 @@ specs:
       matchLabels:
         app: testapi
     ingress:
-      - toEndpoints:
+      - fromEndpoints:
         - matchLabels:
             app: testapiserver
