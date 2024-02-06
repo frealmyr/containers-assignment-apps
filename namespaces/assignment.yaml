@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: assignment
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+# ---
+# apiVersion: cilium.io/v2
+# kind: CiliumNetworkPolicy
+# metadata:
+#   name: assignment
+#   namespace: assignment
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-1"
+# spec:
+#   endpointSelector:
+#     matchLabels:
+#       role: restricted
+#   ingress:
+#     - {} # Block all ingress traffic

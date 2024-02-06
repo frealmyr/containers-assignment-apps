@@ -1,5 +1,4 @@
 argocd-apps:
-
   projects:
     - name: assignment
       namespace: argocd
@@ -18,6 +17,25 @@ argocd-apps:
         kind: '*'
 
   applications:
+    - name: namepspaces
+      namespace: argocd
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+      project: system
+      destination:
+        name: in-cluster
+        namespace: argocd
+      source:
+        repoURL: https://github.com/frealmyr/containers-assignment-apps
+        targetRevision: main
+        path: namespaces
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+      additionalAnnotations:
+        argocd.argoproj.io/sync-wave: "-1"
+
     - name: test-api
       namespace: argocd
       finalizers:
@@ -34,8 +52,6 @@ argocd-apps:
         automated:
           prune: true
           selfHeal: false
-        syncOptions:
-          - CreateNamespace=true
 
     - name: test-api-server
       namespace: argocd
@@ -53,5 +69,3 @@ argocd-apps:
         automated:
           prune: true
           selfHeal: false
-        syncOptions:
-          - CreateNamespace=true

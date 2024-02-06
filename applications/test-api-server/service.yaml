@@ -3,8 +3,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: testapiserversvc
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
   ports:
     - port: 8080

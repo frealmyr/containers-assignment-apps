@@ -1,0 +1,29 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: testapiserver-allow-egress-api
+spec:
+  - description: "Allow egress to testapibackendsvc from testapiserver"
+    endpointSelector:
+      matchLabels:
+        app: testapiserver
+    egress:
+      - toServices:
+        - k8sService:
+            serviceName: testapibackendsvc
+            namespace: assignment
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: testapiserver-allow-ingress-www
+specs:
+  - description: "Allow ingress to testapiserver from ingress"
+    endpointSelector:
+      matchLabels:
+        app: testapiserver
+    ingress:
+      - fromEndpoints:
+        - matchLabels:
+            role: frontend

@@ -11,6 +11,8 @@ spec:
       app: testapi
   strategy:
     type: RollingUpdate
+    maxSurge: 25%
+    maxUnavailable: 25%
   template:
     metadata:
       labels:
@@ -19,8 +21,9 @@ spec:
       containers:
       - image: tecdnbassignment.azurecr.io/testapi:latest
         name: testapi
-        requests:
-          cpu: 10m
-          memory: 25Mi
-        limits:
-          memory: 75Mi
+        resources:
+          requests:
+            cpu: 10m
+            memory: 25Mi
+          limits:
+            memory: 75Mi

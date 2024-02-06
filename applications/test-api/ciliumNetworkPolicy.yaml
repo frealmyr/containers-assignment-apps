@@ -1,0 +1,14 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: testapi-allow-ingress-frontend
+spec:
+  - description: "Allow ingress from testapiserver"
+    endpointSelector:
+      matchLabels:
+        app: testapi
+    ingress:
+      - toEndpoints:
+        - matchLabels:
+            app: testapiserver
