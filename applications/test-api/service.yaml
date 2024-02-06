@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: testapibackendsvc
   labels:
-    role: backend
+    app: testapibackendsvc
 spec:
   selector:
     app: testapi

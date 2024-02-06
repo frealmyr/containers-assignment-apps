@@ -13,7 +13,7 @@ specs:
           - k8sServiceSelector:
               selector:
                 matchLabels:
-                  app: testapi
+                  name: testapibackendsvc
               namespace: assignment
         toPorts:
           - ports:
