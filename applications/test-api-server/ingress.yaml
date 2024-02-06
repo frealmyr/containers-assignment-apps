@@ -9,8 +9,7 @@ spec:
   ingressClassName: traefik
   type: ClusterIP
   rules:
-    - host: "*."
-      http:
+    - http:
         paths:
           - path: /view/customer
             pathType: Exact
