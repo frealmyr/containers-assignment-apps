@@ -8,8 +8,9 @@ specs:
       matchLabels:
         app: testapiserver
     ingress:
-      - fromEntities:
-        - world
+      - fromEndpoints:
+          - matchLabels:
+              app.kubernetes.io/name: traefik
         toPorts:
           - ports:
               - port: "8080"
