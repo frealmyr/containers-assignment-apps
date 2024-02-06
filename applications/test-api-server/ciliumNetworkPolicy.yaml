@@ -10,9 +10,14 @@ spec:
         app: testapiserver
     egress:
       - toServices:
-        - k8sService:
-            serviceName: testapibackendsvc
-            namespace: assignment
+          - k8sServiceSelector:
+              selector:
+                matchLabels:
+                  app: testapi
+              namespace: assignment
+        toPorts:
+          - ports:
+              - port: "10000"
 ---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
