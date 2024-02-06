@@ -3,7 +3,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: testapiserver-allow-egress-api
-spec:
+specs:
   - description: "Allow egress to testapibackendsvc from testapiserver"
     endpointSelector:
       matchLabels:
