@@ -9,16 +9,21 @@ specs:
       matchLabels:
         app: testapiserver
     egress:
+      - toEndpoints:
+          - matchLabels:
+              io.kubernetes.pod.namespace: kube-system
+              k8s-app: kube-dns
+        toPorts:
+          - ports:
+              - port: "53"
+                protocol: UDP
+            rules:
+              dns:
+                - matchPattern: "*"
       - toServices:
           - k8sService:
               serviceName: testapibackendsvc
               namespace: assignment
-        toPorts:
-          - ports:
-              - port: "10000"
-      - toEndpoints:
-          - matchLabels:
-              app: testapi
         toPorts:
           - ports:
               - port: "10000"
