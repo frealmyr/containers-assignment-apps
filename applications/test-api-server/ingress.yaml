@@ -1,20 +1,16 @@
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: testapiserver-ingress
-  labels:
-    role: frontend
+  annotations:
+    kubernetes.io/ingress.class: traefik
 spec:
-  ingressClassName: traefik
-  type: ClusterIP
-  rules:
-    - http:
-        paths:
-          - path: /view/customer
-            pathType: Exact
-            backend:
-              service:
-                name: testapiserversvc
-                port:
-                  number: 8080
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/view/customer`)
+      services:
+        - name: testapiserversvc
+          port: 8080
