@@ -2,8 +2,20 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
+  name: testapiserver-block-egress
+specs:
+  - description: "Allow egress to testapibackendsvc from testapiserver"
+    endpointSelector:
+      matchLabels:
+        app: testapiserver
+    egress:
+      - {}
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
   name: testapi-allow-ingress-frontend
-spec:
+specs:
   - description: "Allow ingress from testapiserver"
     endpointSelector:
       matchLabels:
