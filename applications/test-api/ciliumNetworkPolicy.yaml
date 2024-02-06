@@ -2,24 +2,23 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: testapiserver-block-egress
+  name: testapi
 specs:
-  - description: "Allow egress to testapibackendsvc from testapiserver"
-    endpointSelector:
-      matchLabels:
-        app: testapiserver
-    egress:
-      - {}
----
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: testapi-allow-ingress-frontend
-specs:
-  - description: "Allow ingress from testapiserver"
-    endpointSelector:
+  - endpointSelector:
       matchLabels:
         app: testapi
+    egress:
+      - toEndpoints:
+          - matchLabels:
+              io.kubernetes.pod.namespace: kube-system
+              k8s-app: kube-dns
+        toPorts:
+          - ports:
+              - port: "53"
+                protocol: UDP
+            rules:
+              dns:
+                - matchPattern: "*"
     ingress:
       - fromEndpoints:
         - matchLabels:

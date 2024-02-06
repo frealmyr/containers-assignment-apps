@@ -2,12 +2,17 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: testapiserver-allow-egress-api
+  name: testapiserver
 specs:
-  - description: "Allow egress to testapibackendsvc from testapiserver"
-    endpointSelector:
+  - endpointSelector:
       matchLabels:
         app: testapiserver
+    ingress:
+      - fromEntities:
+        - world
+        toPorts:
+          - ports:
+              - port: "8080"
     egress:
       - toEndpoints:
           - matchLabels:
@@ -27,19 +32,3 @@ specs:
         toPorts:
           - ports:
               - port: "10000"
----
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: testapiserver-allow-ingress-www
-specs:
-  - description: "Allow ingress to testapiserver from ingress"
-    endpointSelector:
-      matchLabels:
-        app: testapiserver
-    ingress:
-      - fromEntities:
-        - world
-        toPorts:
-          - ports:
-              - port: "8080"
