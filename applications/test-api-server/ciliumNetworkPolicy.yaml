@@ -16,6 +16,12 @@ specs:
         toPorts:
           - ports:
               - port: "10000"
+      - toEndpoints:
+          - matchLabels:
+              app: testapi
+        toPorts:
+          - ports:
+              - port: "10000"
 ---
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
