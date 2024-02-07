@@ -15,6 +15,12 @@ specs:
         toPorts:
           - ports:
               - port: "8080"
+        rules:
+          http:
+          - method: "GET"
+            path: "/view/customer"
+          - method: "GET"
+            path: "/api/customer"
     egress:
       - toEndpoints:
           - matchLabels:
